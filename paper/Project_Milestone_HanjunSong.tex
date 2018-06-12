@@ -1,0 +1,129 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+% \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading nips_2017
+%
+% to avoid loading the natbib package, add option nonatbib:
+% \usepackage[nonatbib]{nips_2017}
+
+\usepackage{nips_2017}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{nips_2017}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+\title{Reinforcement learning for non-prehensile manipulation based on kinaesthetic and tactile feedback}
+
+% The \author macro works with any number of authors. There are two
+% commands used to separate the names and addresses of multiple
+% authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to
+% break the lines. Using \AND forces a line break at that point. So,
+% if LaTeX puts 3 of 4 authors names on the first line, and the last
+% on the second line, try using \AND instead of \And before the third
+% author name.
+
+\author{
+%  Hanjun Song\thanks{Use footnote for providing further
+%    information about author (webpage, alternative
+%    address)---\emph{not} for acknowledging funding agencies.} \\
+%  Department of Computer Science and Engineering\\
+%  University of Washington\\
+%  Seattle, WA 98185 \\
+%  \texttt{hanjuns@cs.uw.edu} \\
+  %% examples of more authors
+  %% \And
+%   Hanjun Song \\
+%   Department of  \\
+%   Address \\
+  %% \texttt{email} \\
+  %% \AND
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+}
+
+\begin{document}
+% \nipsfinalcopy is no longer used
+
+\maketitle
+
+\begin{abstract}
+ 
+Advancement of haptic sensing technology, such as tactile sensors and sensitive torque control of actuators, provides richer information about contact force when manipulating objects with robotic arms. One application of robotic manipulation that can take advantage of those advanced haptic technology is non-prehensile manipulation. In this project, reinforcement learning algorithms will be utilized to learn control policies for haptic-based non-prehensile manipulation of arbitrary objects on MuJoCo simulator. The task space for the non-prehensile manipulation is restricted to the two dimensional surface. Various types of paths will be given as reference paths to follow when manipulating the object using pushing action. Finally, control policies learned from simulation will be applied to the physical system if time allows.
+
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{Background}
+
+People use a lot of strategies to manipulate object. One common example is grasping objects and move around. However, most of the manipulation is non-prehensile manipulation, which means manipulation not involving grasping. Non-prehensile manipulation includes actions such as pushing, pulling, flipping, throwing, and so on. Non-prehensile manipulation is challenging in robotics because of many reasons. To mention a few of them, non-prehensile manipulation couples grasp planning and kinematic motion planning and increases uncertainty of feedback from sensors. For example, occlusion occurs due to the robot hand when the robot uses visual feedback from the camera on the its head. Because the robot is not grasping the object, the uncertainty increases more than when the robot is grasping the object. Therefore, haptic feedback is required to have more stable feedback than visual feedback.
+
+Haptic feedback is the combination of kinaesthetic feedback and tactile feedback. For robotic manipulators, kinaesthetic feedback is obtained by forward dynamics based on the torques of each joints or force/torque sensor on the end-effector. Tactile feedback is acquired by sensors which are able to sense normal force, shear force, and vibration. For humans, the sense of touch is a key factor that enables manual dexterity for humans. Accordingly, there have been a lot of attempts to develop robust and multi-modal tactile sensors for robots and reliable results came out recently. For example, GelSight and FingerVision are camera-based tactile sensors and they give not only force and vibration data, but also proximity visual data. In addition to the tactile sensor, sensitive torque control became available for actuators. For instance, HEBI Robotics developed a series-elastic actuator with 0.01Nm torque resolution.
+
+\subsection{Statement of the Problem}
+
+Can robot manipulate a physically unknown object based on haptic feedback, such as kinaesthetic feedback and tactile feedback, on two dimensional surface so that the object follows a given path using non-prehensile actions, such as pushing? To deal with the uncertainty of the friction and inertia of the object, what kind of reinforcement learning algorithm should be used?
+
+\subsection{Objectives}
+
+The objectives of this research is to implement an algorithm for learning control policies of haptic-based non-prehensile manipulation of an arbitrary object guided by reinforcement. Also, MuJoCo physical simulation will be set up for learning control policies with the implemented algorithm. Finally, control policies learned from simulation will be applied to a physical system.
+
+%\subsection{Literature Review}
+
+
+%The original motivation of this project stems from a pole balancing problem. Conventional pole balancing problems are based on visual feedback of the pole to estimate the leaning angle or angular feedback based on the encoder values at the joint of the pole and the base. However, those feedback controls restricts the shape of objects or requires specific hardware settings. To expand the type of objects from the pole to general shapes of objects, haptic feedback seems to be possible solution because it depends only on the contact forces. Also, reinforcement learning is essential to implement the control strategy for the physically unknown objects.
+%
+%To reduce the complexity of the problem, this problem can be thought on the two dimensional surface. Interestingly, two dimensional object balancing can be considered as a non-prehensile manipulation problem using pushing action. For example, a manipulator can be commanded to move an object using pushing action on a straight line based on the haptic feedback. This simplification reduces the states space from 6 degrees-of-freedom (DOF) to 3 DOF, but adds the uncertainty of the friction between the object and the surface. 
+%
+%Due to the advancement of the haptic sensors, such as tactile sensors, it seems to be feasible to tackle this problem in real world. Once the control strategy is trained on a simulation, such as MUJOCO, it will be tested on a 5 DOF manipulator with a tactile sensor.
+
+%\subsection{Style}
+%
+%\subsection{Retrieval of style files}
+
+\section{Expected Outputs}
+
+Expected outputs include reinforcement learning algorithm to learn control policies of haptic-based non-prehensile manipulation of an arbitrary object on MuJoCo simulator. Also, there will be demonstration of the control policies on physical system composed of 5 DOF manipulator with a tactile sensor or force/torque sensor.
+
+\section{Methodology}
+
+Several kinds of reinforcement algorithms, such as natural policy gradient, will be explored to find proper algorithms that fits to manipulation control application. For physical system, 5 DOF manipulator from HEBI Robotics will be used with a tactile sensor, called FingerVision, to give tactile feedback. For kinaesthetic feedback, torque values from each actuator can be used to calculate forward dynamics or a force/torque sensor, such as Nano 25, can be installed on the end-effector.
+
+A specific path, such as straight line, will be given that the object should follow. Then, the robot are will stabilizing the object as it is moving to the given direction based on haptic feedback. During the training, the deviation from the given path of the object will be considered as a reward to the reinforcement learning algorithm. 
+
+%\subsection{Physical System}
+
+
+
+%\section{Timelines}
+%\subsection{Environment}
+
+%\section{Conclusion}
+%
+%
+%\section{References}
+
+\end{document}
